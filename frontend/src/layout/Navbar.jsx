@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React from 'react';
 import { Menu, X } from 'lucide-react';
 import { UserButton, useClerk, useUser } from '@clerk/clerk-react'
 import { useEffect } from 'react';

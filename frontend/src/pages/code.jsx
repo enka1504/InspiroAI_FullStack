@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '@/layout/Header'
 
-const blog = () => {
+const code = () => {
   return (
     <>
     <Header/>
@@ -9,4 +9,4 @@ const blog = () => {
   )
 }
 
-export default blog
+export default code

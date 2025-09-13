@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '@/layout/Header'
 
 const article = () => {
   return (
-    <div>article</div>
+    <>
+    <Header/>
+    </>
   )
 }
 

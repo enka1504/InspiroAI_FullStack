@@ -12,7 +12,7 @@ const Dashboard = () => {
       </div>
 
       <StatsOverview />
-      <QuickActions />
+
       <RecentContent />
     </div>
   );

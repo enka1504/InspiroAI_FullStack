@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '@/layout/Header'
 
 const video = () => {
   return (
-    <div>video</div>
+    <>
+    <Header/>
+    </>
   )
 }
 

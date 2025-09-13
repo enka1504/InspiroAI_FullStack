@@ -7,6 +7,8 @@ import Dashboard from './pages/dashboard'
 import Image from './pages/image'
 import Article from './pages/article'
 import Resume from './pages/resume'
+import Pricing from './pages/pricing'
+import Code from './pages/code'
 
 
 const App = () => {
@@ -19,6 +21,8 @@ const App = () => {
       <Route path='/image' element={<Image />} />
       <Route path='/article' element={<Article />} />
       <Route path='/resume' element={<Resume />} />
+      <Route path='/pricing' element={<Pricing />} />
+      <Route path='/code' element={<Code />} />
     </Routes>
   )
 }
