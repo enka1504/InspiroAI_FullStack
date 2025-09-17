@@ -1,14 +1,19 @@
 import React from 'react';
 import { HelpCircle, User } from 'lucide-react';
-import { UserButton} from '@clerk/clerk-react';
+import { UserButton , useUser} from '@clerk/clerk-react';
 
 const Header = () => {
 
-
-
+ const {user,isLoaded} = useUser();
+ if(!isLoaded){
+  return null;
+ }
+ const username = user.username || user.fullName || user.firstName;
+ console.log(username);
+ 
   return (
     <div className='flex justify-center items-center sticky top-2 z-[9999] mt-2'>
-    <header className="bg-slate-900/50 backdrop-blur-md text-white rounded-2xl w-[80%] shadow-lg">
+    <header className="bg-slate-900/50 backdrop-blur-md text-white rounded-2xl w-[90%] shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
 
@@ -53,7 +58,7 @@ const Header = () => {
 
 
           <div className="flex items-center space-x-4">
-
+            <h1>{user.username || user.fullName || user.firstName}</h1>
             <UserButton/>
           </div>
         </div>
