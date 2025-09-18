@@ -31,13 +31,13 @@ const Sidebar = () => {
 
   const { signOut } = useAuth();
   const navigate = useNavigate();
-  const { user , isLoaded} = useUser();
+  const { user, isLoaded } = useUser();
 
-  if(!isLoaded){
+  if (!isLoaded) {
     return null;
   }
-  
-  const username=user.username || user.fullName || user.firstName;
+
+  const username = user.username || user.fullName || user.firstName;
   console.log(username);
 
   const handleSignOut = async () => {
@@ -61,7 +61,7 @@ const Sidebar = () => {
         <UserButton />
       </div>
       <div className='mt-2 text-xl font-bold text-green-600 text-center mb-6'>
-        <h1>{user.username|| user.firstName || user.fullName}</h1>
+        <h1>{user.username || user.firstName || user.fullName}</h1>
       </div>
       <nav className="space-y-2">
         {menuItems.map((item, index) => (
