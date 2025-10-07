@@ -9,6 +9,7 @@ import {
   BookOpen,
   Diamond,
   LogOut,
+  BookAIcon,
   BadgeDollarSign
 
 } from 'lucide-react';
@@ -25,7 +26,7 @@ const Sidebar = () => {
     { icon: BookOpen, label: 'Blog Generator', active: false, navigator: '/blog' },
     { icon: Image, label: 'Image Generator', active: false, navigator: '/image' },
     { icon: Video, label: 'Video Generator', active: false, navigator: '/video' },
-    { icon: CodeIcon, label: 'AI Code Assistant', active: false, navigator: '/code' },
+    { icon: BookAIcon, label: 'Resume Analyzer', active: false, navigator: '/resume' },
     { icon: BadgeDollarSign, label: 'Pricing', active: false, navigator: '/pricing' },
   ];
 

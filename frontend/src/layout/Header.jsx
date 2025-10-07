@@ -28,7 +28,7 @@ const Header = () => {
 
             </div>
 
-            <nav className="flex space-x-6 ml-16">
+            <nav className="flex space-x-6 ml-28">
               <a href="/dashboard" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                 Dashboard
               </a>
@@ -47,9 +47,7 @@ const Header = () => {
               <a href="/resume" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                 Resume Analyzer
               </a>
-              <a href="/code" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
-                AI Code Assistant
-              </a>
+             
               <a href="/pricing" className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
                 Pricing
               </a>
