@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import 'dotenv/config';
-import { modelNames } from 'mongoose';
+
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEYS;
 
@@ -11,7 +11,7 @@ if (!GEMINI_API_KEY) {
 export const geminiClient = new GoogleGenerativeAI(GEMINI_API_KEY);
 console.log("Gemini client configured");
 
-export const generateText = async (prompt, modelName = "gemini-2.0-flash") => {
+const generateText = async (prompt, modelName = "gemini-2.5-flash") => {
   try {
     const model = geminiClient.getGenerativeModel({ model: modelName });
     const result = await model.generateContent(prompt);
@@ -23,4 +23,4 @@ export const generateText = async (prompt, modelName = "gemini-2.0-flash") => {
     throw new Error("Failed to generate content from Gemini API");
   }
 }
-export default geminiClient;
+export { generateText };

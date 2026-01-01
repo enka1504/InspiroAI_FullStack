@@ -2,16 +2,16 @@ import { v2 as cloudinary } from 'cloudinary'
 import 'dotenv/config'
 /*configuration of the cloudinary */
 
-const CLOUDINARY_CLOUD_NAME=process.env.CLOUDINARY_CLOUD_NAME
-const CLOUDINARY_API_KEY=process.env.CLOUDINARY_API_KEYS
-const CLOUDINARY_SECRET_KEY=process.env.CLOUDINARY_SECRET_KEYS
+const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME
+const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEYS
+const CLOUDINARY_SECRET_KEY = process.env.CLOUDINARY_SECRET_KEYS
 
 
 cloudinary.config({
-   cloud_name: CLOUDINARY_CLOUD_NAME,
-   api_key : CLOUDINARY_API_KEY,
-   api_secret : CLOUDINARY_SECRET_KEY,
-   secure: true
+  cloud_name: CLOUDINARY_CLOUD_NAME,
+  api_key: CLOUDINARY_API_KEY,
+  api_secret: CLOUDINARY_SECRET_KEY,
+  secure: true
 })
 
 console.log("Cloudinary configured");
