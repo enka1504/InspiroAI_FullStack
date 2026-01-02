@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const blogSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
   blogTitle: {
     type: String,
     required: true
@@ -23,31 +18,7 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  blogImageURL: {
-    type: String,
-    required: true
-  },
-  bloglikes: {
-    type: Number,
-    default: 0,
-  },
-  blogisPublic: {
-    type: Boolean,
-    default: false
-  },
-  blogComments: [
-    {
-      userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-      },
-      comment: {
-        type: String,
-        required: true
-      }
-    }
-  ]
+  
 },
   {
     timestamps: true
