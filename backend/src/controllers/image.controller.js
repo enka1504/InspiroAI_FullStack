@@ -132,9 +132,38 @@ const deleteImageByIdController = async (req, res) => {
   }
 }
 
+const fetchUserImages = async (req, res) => {
+  try {
+    const userId = req.userInfo.id;
+
+    const userImages = await Image.find({
+      userId: userId
+    }).sort({ createdAt: -1 });
+
+    if (!userImages) {
+      return res.status(404).json({
+        success: false,
+        message: "No images found for this user"
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      articles: userImages
+    })
+  }
+  catch (error) {
+    console.log("Error fetching user images", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    })
+  }
+}
+
 export {
   generateImageController
   , getAllImagesController
   , getImageByIdController
-  , deleteImageByIdController
+  , deleteImageByIdController,
+  fetchUserImages
 }

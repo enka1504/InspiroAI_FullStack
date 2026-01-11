@@ -154,5 +154,33 @@ const deleteThumbnailController = async (req, res) => {
   }
 }
 
-export { generateThumbnailController, getallThumbnailsController , getThumbnailByIdController , deleteThumbnailController };
+const fetchUserThumbnails = async (req, res) => {
+  try {
+    const userId = req.userInfo.id;
+
+    const userThumbnails = await Thumbnail.find({
+      userId: userId
+    }).sort({ createdAt: -1 });
+
+    if (!userThumbnails) {
+      return res.status(404).json({
+        success: false,
+        message: "No Thumbnails found for this user"
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      articles: userThumbnails
+    })
+  }
+  catch (error) {
+    console.log("Error fetching user articles", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    })
+  }
+}
+
+export { generateThumbnailController, getallThumbnailsController , getThumbnailByIdController , deleteThumbnailController , fetchUserThumbnails };
 

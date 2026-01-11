@@ -1,6 +1,7 @@
 import Article from "../models/article.model.js";
 import User from "../models/user.model.js"
 import { geminiClient, generateText } from "../config/gemini.js";
+import { use } from "react";
 
 
 
@@ -219,11 +220,40 @@ const deleteArticle = async (req, res) => {
   }
 }
 
+const fetchUserArticles = async (req, res) => {
+  try {
+    const userId = req.userInfo.id;
+
+    const userArticles = await Article.find({
+      userId: userId
+    }).sort({ createdAt: -1 });
+
+    if (!userArticles) {
+      return res.status(404).json({
+        success: false,
+        message: "No articles found for this user"
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      articles: userArticles
+    })
+  }
+  catch (error) {
+    console.log("Error fetching user articles", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    })
+  }
+}
+
 
 export {
   createArticle,
   getAllArticles,
   getArticleById,
   updateArticle,
-  deleteArticle
+  deleteArticle,
+  fetchUserArticles
 }

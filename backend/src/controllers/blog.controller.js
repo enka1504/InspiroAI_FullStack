@@ -221,11 +221,40 @@ const deleteBlog = async (req, res) => {
   }
 }
 
+const fetchUserBlogs = async (req, res) => {
+  try {
+    const userId = req.userInfo.id;
+
+    const userBlogs = await Blog.find({
+      userId: userId
+    }).sort({ createdAt: -1 });
+
+    if (!userBlogs) {
+      return res.status(404).json({
+        success: false,
+        message: "No blogs found for this user"
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      articles: userBlogs 
+    })
+  }
+  catch (error) {
+    console.log("Error fetching user blogs", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error"
+    })
+  }
+}
+
 
 export {
   createBlog,
   getAllBlogs,
   getBlogById,
   updateBlog,
-  deleteBlog
+  deleteBlog,
+  fetchUserBlogs
 }
