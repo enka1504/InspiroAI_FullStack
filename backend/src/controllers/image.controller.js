@@ -11,6 +11,11 @@ import { uploadToCloudinary } from '../config/cloudinary.js'
 const generateImageController = async (req, res) => {
   try {
     const { promt, style = "realistic", aspectRatio = "1:1" } = req.body;
+
+    const userId = req.userInfo.id;
+    const userName = req.userInfo.userNameFromAccessToken;
+    console.log("User Info:", userId, userName);
+
     if (!promt) {
       return res.status(400).json({
         success: false,
@@ -27,6 +32,8 @@ const generateImageController = async (req, res) => {
     )
     //4.store image info in database
     const newImage = await Image.create({
+      userId: userId,
+      userName: userName,
       imagePrompt: promt,
       imageURL: cloudinaryResult.url,
       style,

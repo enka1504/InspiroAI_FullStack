@@ -1,12 +1,27 @@
-import multer from "multer";
+import multer from 'multer';
+import path from 'path';
 
-const storage = multer.memoryStorage();
+// Configure multer for file uploads
+const storage = multer.memoryStorage(); // Store in memory
+
+const fileFilter = (req, file, cb) => {
+  // Accept only PDF and DOCX files
+  const allowedTypes = ['.pdf', '.doc', '.docx'];
+  const ext = path.extname(file.originalname).toLowerCase();
+  
+  if (allowedTypes.includes(ext)) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only PDF and DOCX files are allowed!'), false);
+  }
+};
 
 const upload = multer({
-  storage,
+  storage: storage,
+  fileFilter: fileFilter,
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB
-  },
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  }
 });
 
 export default upload;

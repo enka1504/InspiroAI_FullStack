@@ -3,6 +3,7 @@ import User from "../models/user.model.js"
 import { geminiClient, generateText } from "../config/gemini.js";
 
 
+
 /**
  * @desc    Create AI-generated article using Gemini
  * @route   POST /api/articles
@@ -12,6 +13,11 @@ import { geminiClient, generateText } from "../config/gemini.js";
 const createArticle = async (req, res) => {
   try {
     const { title, tags = [], category, tone = "Informative", length = "medium" } = req.body;
+    const userId = req.userInfo.id;
+    const userName = req.userInfo.userNameFromAccessToken;
+
+    console.log("Username  in createArticle:", req.userInfo.userNameFromAccessToken);
+
     if (!title || !category) {
       return res.status(400).json({
         message: "Title and Category are required",
@@ -36,7 +42,6 @@ Guidelines:
 - Ensure originality and clarity
 `;
 
-
     const generateContent = await generateText(prompt);
     if (!generateContent) {
       return res.status(500).json({
@@ -48,7 +53,8 @@ Guidelines:
 
 
     const newArticle = await Article.create({
-
+      userId: userId,
+      userName: userName,
       title,
       content: generateContent,
       tags,

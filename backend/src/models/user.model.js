@@ -1,51 +1,26 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-  clerkId: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  userName: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  userEmail: {
-    type: String,
-    required: true,
-    
-    unique: true
-  },
-  userPlan: {
-    type: String,
-    enum: ['Free', 'Paid'],
-    default: 'Free'
-  },
-  usages: {
-    generatedArticles: {
-      type: Number,
-      default: 0
+const userSchema = new mongoose.Schema(
+  {
+    userName : {
+      type : String,
+      required : true,
+      unique : true,
+      trim : true,
     },
-    generatedBlogs: {
-      type: Number,
-      default: 0
+    email : {
+      type : String,
+      required : true ,
+      unique : true,
+      trim : true,
     },
-    generatedImages: {
-      type: Number,
-      default: 0
-    },
-    generatedVideos: {
-      type: Number,
-      default: 0
-    },
-
+    userPassword : {
+      type : String ,
+      required : true,
+      trim : true,
+    }
   }
-}, {
-  timestamps: true
-})
+);
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 export default User;
-
-

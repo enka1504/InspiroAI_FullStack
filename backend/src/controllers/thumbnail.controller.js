@@ -11,6 +11,12 @@ import { uploadToCloudinary } from '../config/cloudinary.js'
 const generateThumbnailController = async (req, res) => {
   try {
     const { topic, style, colorScheme, addText = true } = req.body;
+
+    const userId = req.userInfo.id;
+    const userName = req.userInfo.userNameFromAccessToken;
+    console.log(`👤 Request by User: ${userName} (ID: ${userId})`);
+
+
     if (!topic) {
       return res.status(400).json({
         success: false,
@@ -34,6 +40,8 @@ const generateThumbnailController = async (req, res) => {
     //4.save to MongoDB
 
     const newThumbnail = await Thumbnail.create({
+      userId: userId, 
+      userName: userName,
       topic,
       style,
       colorScheme,

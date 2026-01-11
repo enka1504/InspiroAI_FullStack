@@ -1,6 +1,15 @@
 import mongoose from "mongoose";
 
 const thumbnailSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  userName: {
+    type: String,
+    required: true,
+  },
   topic: {
     type: String,
     required: true,

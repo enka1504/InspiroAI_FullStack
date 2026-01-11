@@ -1,14 +1,15 @@
 import express from 'express'
-
+import { requireAuth } from "@clerk/express";
 import { createArticle, getAllArticles, getArticleById, updateArticle, deleteArticle } from '../controllers/article.controller.js';
+import authMiddleware from '../middlewares/auth.js';
 
 
 const router = express.Router();
 
-router.post('/create', createArticle);
+router.post('/create', authMiddleware, createArticle);
 router.get('/getall', getAllArticles);
 router.get('/get/:id', getArticleById);
-router.put('/update/:id',  updateArticle);
-router.delete('/delete/:id',  deleteArticle);
+router.put('/update/:id', authMiddleware, updateArticle);
+router.delete('/delete/:id', authMiddleware, deleteArticle);
 
 export default router;

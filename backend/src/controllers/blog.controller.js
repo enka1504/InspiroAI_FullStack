@@ -1,6 +1,6 @@
 import Blog from '../models/blog.model.js';
 import { generateText } from "../config/gemini.js";
-
+import 'dotenv/config';
 
 /**
  * @desc    Create AI-generated blog
@@ -12,6 +12,12 @@ import { generateText } from "../config/gemini.js";
 const createBlog = async (req, res) => {
   try {
     const { title, tags = [], content, category, tone = "informative", length = "medium" } = req.body;
+
+    const userId = req.userInfo.id;
+    const userName = req.userInfo.userNameFromAccessToken;
+    console.log("UserID in createBlog:", userId);
+    console.log("Username  in createBlog:", userName);
+
     if (!title || !category ) {
       return res.status(400).json({
         success: false,
@@ -40,6 +46,8 @@ Guidelines:
       })
     }
     const newBlog = await Blog.create({
+      userId: userId,
+      userName: userName, 
       blogTitle: title,
       blogTags: tags,
       blogCateogory: category,
