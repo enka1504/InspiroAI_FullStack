@@ -1,3 +1,6 @@
+# site_url:
+ https://excalidraw.com/
+
 # Inspiro AI : AI Powered SaaS application
 
 # Article / Blog Generation Pipeline
